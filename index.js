@@ -1,18 +1,50 @@
-//require & import
-const express = require("express");
+//-> import moudule
+//////////////////////////////////////////////
+import express from "express"
+import morgan from "morgan"
+import helmet from "helmet"
+import cookieParser from "cookie-parser"
+import bodyParser from "body-parser"
+////////////////////////////////////////////// &
 const app = express();
+////////////////////////////////////////////// 
 
-// port listen
+//-> port 
+////////////////////////////////////////////// 
 const handleListing = () =>{console.log(`Listening on : http://localhost:${port}`)}
 const port = 5000;
 
-function handleHome(req,res){
-    res.send("hello!")
+////////////////////////////////////////////// &
+
+//-> Handler
+//////////////////////////////////////////////
+const handleHome=(req,res)=>{
+    res.send("hello! my World!!!!!")
 }
-function handleProfile(req,res){
+const handleProfile = (req,res)=>{
     res.send("U R on my profile!")
 }
-app.get("/", handleHome)
+////////////////////////////////////////////// &
 
+//-> MiddleWare
+//////////////////////////////////////////////
+
+app.use(cookieParser()); //cookie 정보
+app.use(bodyParser.json()); // form data 정보
+app.use(bodyParser.urlencoded({extended:true})); // url 인코더
+app.use(helmet());
+app.use(morgan("dev")) //logger
+
+////////////////////////////////////////////// &
+
+//-> Route
+//////////////////////////////////////////////
+
+app.get("/", handleHome)
 app.get('/profile',handleProfile)
+
+////////////////////////////////////////////// &
+
+//////////////////////////////////////////////
 app.listen(port, handleListing);
+////////////////////////////////////////////// &
