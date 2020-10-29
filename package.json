@@ -1,8 +1,8 @@
 {
   "name": "wetube",
   "version": "1.0.0",
-  "description": "Cloning Youtube",
-  "main": "index.js",
+  "description": "Cloning Youtube with EXPRESS and REACT",
+  "main": "init.js",
   "author": "kij",
   "dependencies": {
     "@babel/core": "^7.12.3",
@@ -15,7 +15,7 @@
     "morgan": "^1.10.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js --delay 2s"
+    "start": "nodemon --exec babel-node init.js --delay 2s"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
