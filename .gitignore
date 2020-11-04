@@ -1,4 +1,9 @@
+#node Moudules 
 node_modules
+
+#uploads Files 
+/uploads
+
 # Logs
 logs
 *.log
