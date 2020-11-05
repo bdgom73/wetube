@@ -4,6 +4,9 @@ node_modules
 #uploads Files 
 /uploads
 
+#Static file
+static
+
 # Logs
 logs
 *.log

@@ -8,9 +8,11 @@ html(lang="en")
         link(href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css", media="all", rel="stylesheet")
         link(href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css", media="all", rel="stylesheet")
         link(href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css", media="all", rel="stylesheet")
+        link(rel="stylesheet", href="/static/styles.css")
         title #{pageTitle} | #{siteTitle}
     body
         include ../partials/header
         main
             block content
         include ../partials/footer
+        script(src="/static/main.js")
