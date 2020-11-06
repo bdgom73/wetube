@@ -3,8 +3,9 @@ extends layouts/main.pug
 block content
     .form-container
         form(action=routes.editProfile, method="post")
-            lable(for="avatar") Avatar
-            input(type="file" ,id="avatar" ,name="avatar")
+            .fileUpload
+                lable.filelabel(for="avatar") Avatar
+                input(type="file" ,id="avatar" ,name="avatar")
             input(type="text" ,placeholder="Name",name="name")
             input(type="email" ,placeholder="Email",name="email")
             input(type="submit", value="Update ProFile")

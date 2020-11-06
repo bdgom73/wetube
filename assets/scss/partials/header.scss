@@ -3,9 +3,9 @@
     height: 60px;
     background-color: $black;
     margin-bottom: 50px; 
+    min-width: 1200px;
     .header_wrap{
         max-width: 1200px;
-        min-width: 1200px;
         height: 60px;
         display: flex;
         justify-content: space-between;

@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 1200px;
     .footer_icon{
         color:$red;
         font-size: 40px;

@@ -1,16 +1,18 @@
 extends layouts/main.pug
 
 block content
-    .video_player
-        video(src=`/${video.fileUrl}`,controls=true,width="640px")
-    .video_info
-        a(href=routes.editVideo(video.id)) Edit Video
-        h5.video_title=video.title 
-        span.video_views=video.views 
-        p.video_desc=video.description
-    .video_comments
-        if video.comments.length === 1
-            span.video_comment-number 1 comment
-        else
-            span.video_comment-number #{video.comments.length} comments
+    .video-detail_container
+        .video_player
+            video(src=`/${video.fileUrl}`,controls=true)
+        .video_info
+            a(href=routes.editVideo(video.id))
+                button Edit Video
+            h5.video_title=video.title 
+            span.video_views=`조회수 ${video.views}`
+            p.video_desc=video.description
+        .video_comments
+            if video.comments.length === 1
+                span.video_comment-number 1 comment
+            else
+                span.video_comment-number #{video.comments.length} comments
     

@@ -2,14 +2,15 @@ extends layouts/main.pug
 include mixins/videoBlock
 block content
     .search-header 
-        h3 Searching for #{searchingBy}
+        h3 Searching for #{searchingBy} ...
     .search-videos
-        if videos.length === 0
-            h5 No Video Found
-        each video in videos
-            +videoBlock({
-                title:video.title,
-                views:video.views,
-                videoFile:video.videoFile,
-                id:video.id
-            })
+        .search-videos_wrap
+            if videos.length === 0
+                h5 No Video Found
+            each video in videos
+                +videoBlock({
+                    title:video.title,
+                    views:video.views,
+                    videoFile:video.fileUrl,
+                    id:video.id
+                })
