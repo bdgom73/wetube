@@ -2,7 +2,6 @@
 Cloning Youtube with NODE.JS "#weTube"
 
 ##Page : 
-
 -[x] HOME
 -[x] JOIN
 -[x] Login
@@ -10,6 +9,6 @@ Cloning Youtube with NODE.JS "#weTube"
 -[] User Detail
 -[x] Edit Profile
 -[] Change Password
--[] Upload
--[] Video Detail
--[] Edit Video
+-[x] Upload
+-[x] Video Detail
+-[x] Edit Video

@@ -15,4 +15,20 @@ export const setHeaderPolicy = (req,res,next) =>{
     res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
     next();
 }
+
+export const onlyPublic = (req,res,next)=>{
+    if(req.user){
+        res.redirect(routes.home);
+    }else{
+        next();
+    }
+}
+
+export const onlyPrivate = (req,res,next)=>{
+    if(req.user){
+        next();
+    }else{
+        res.redirect(routes.home)
+    }
+}
 export const uploadVideo = multerVideo.single('videoFile')

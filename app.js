@@ -1,8 +1,11 @@
+import bodyParser from "body-parser"
 import express from "express"
+import flash from "connect-flash";
 import morgan from "morgan"
 import helmet from "helmet"
 import cookieParser from "cookie-parser"
-import bodyParser from "body-parser"
+import MongoStroe from "connect-mongo"
+import mongoose from "mongoose"
 import passport from "passport";
 import session from "express-session";
 import { localsMiddleware,setHeaderPolicy } from "./middlewares"
@@ -13,6 +16,7 @@ import routes from "./routes"
 import "./passport"
 const app = express();
 
+const cookieStore = MongoStroe(session);
 
 app.use(helmet());
 app.set("view engine","pug");
@@ -22,13 +26,16 @@ app.use(cookieParser()); //cookie 정보
 app.use(bodyParser.json()); // form data 정보
 app.use(bodyParser.urlencoded({extended:true})); // url 인코더
 app.use(morgan("dev")) //logger
+app.use(flash());
 app.use(session({
     secret:process.env.COOKIE_SECRET,
     resave:true,
-    saveUninitialized:false
+    saveUninitialized:false,
+    store : new cookieStore({mongooseConnection : mongoose.connection})
 }))
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use(localsMiddleware)
 app.use(setHeaderPolicy)

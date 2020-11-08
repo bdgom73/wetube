@@ -3,7 +3,11 @@ extends layouts/main.pug
 block content
     .form-container
         form(action=routes.login, method="post")
-            input(type="email",name="email",placeholder="Email")
-            input(type="password", name="password",placeholder="password")
+            .unlock
+                input(type="email",name="email",placeholder="Email")
+                i.fas.fa-envelope
+            .unlock
+                input(type="password", name="password",placeholder="password")
+                i.fas.fa-unlock-alt
             input(type="submit", value="Login")
         include partials/socialLogin

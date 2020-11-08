@@ -3,9 +3,17 @@ extends layouts/main.pug
 block content
     .form-container
         form(action=routes.join, method="post")
-            input(type="text", name="name" , placeholder="Full Name" required=true)
-            input(type="email",name="email",placeholder="Email" required=true)
-            input(type="password", name="password",placeholder="password" required=true)
-            input(type="password", name="password2",placeholder="Verify password" required=true)
+            .unlock
+                input(type="text", name="name" , placeholder="Full Name" ,required=true)
+                i.fas.fa-user
+            .unlock
+                input(type="email",name="email",placeholder="Email", required=true)
+                i.fas.fa-envelope
+            .unlock
+                input(type="password", name="password",placeholder="password", required=true)
+                i.fas.fa-unlock-alt
+            .unlock
+                input(type="password", name="password2",placeholder="Verify password", required=true)
+                i.fas.fa-unlock-alt
             input(type="submit", value="Join Now!")
         include partials/socialLogin
