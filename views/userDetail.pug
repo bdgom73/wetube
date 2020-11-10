@@ -2,8 +2,20 @@ extends layouts/main.pug
 
 block content
     .user-profile
-        .user-profile_header
-            img.avatar(src=loggedUser.avatarUrl)
-            h4.profile_username=loggedUser.name
-            h3=loggedUser.email
-            
+        if user._id
+             .user-profile_header
+                img.u-avatar(src=user.avatarUrl)
+                h4.profile_username=user.name
+                h3.profile_useremail=user.email
+        else        
+            .user-profile_header
+                img.u-avatar(src=loggedUser.avatarUrl)
+                h4.profile_username=loggedUser.name
+                h3.profile_useremail=loggedUser.email
+
+        if user.id === loggedUser.id || user._id === loggedUser.id
+                .user-profile_btns
+                    a.user-link(href=`/users${routes.editProfile}`)
+                        button 🖋 Edit Profile
+                    a.user-link(href=`/users${routes.changePassword}`)
+                        button 🔏 Change Password

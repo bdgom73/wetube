@@ -4,6 +4,7 @@ const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
+const BASICIMG = "http://127.0.0.1:3010/uploads/avatars/basicuser.png";
 
 // Users
 const USERS = "/users";
@@ -11,6 +12,7 @@ const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 const ME ="/me";
+const RESETAVATAR = "/basicUserAvatar"
 
 // Videos
 const VIDEOS = "/videos";
@@ -70,7 +72,9 @@ const routes = {
     gitHub:GITHUB,
     githubCallback:GITHUB_CB,
     facebook:FACEBOOK,
-    facebookCallback:FACEBOOK_CB
+    facebookCallback:FACEBOOK_CB,
+    resetavatar:RESETAVATAR,
+    basicimg:BASICIMG
 };
 
 export default routes;

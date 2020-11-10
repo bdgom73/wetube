@@ -16,7 +16,8 @@ export const postJoin = async (req,res,next)=>{
         try{
             const user = await User({
                 name, 
-                email
+                email,
+                avatarUrl:routes.basicimg
             })
             await User.register(user, password);
             next();
@@ -44,9 +45,7 @@ export const githubLoginCallback = async (a, __, profile, cb)=>{
         const user = await User.findOne({email});
         if(user){
             user.githubId = id;
-            user.email = email;
-            user.name = name;
-            user.avatarUrl = avatarUrl
+            user.avatarUrl = avatarUrl;
             user.save();
             return cb(null,user);
         }
@@ -79,15 +78,81 @@ export const logout = (req,res)=>{
 export const getMe = (req,res)=>{
     res.render("userDetail",{pageTitle : "userDetail", user:req.user});
 }
-export const editProfile = (req,res)=> res.render("editProfile",{pageTitle : "editProfile"});
+
 export const userDetail = async (req,res)=> {
     const {params : {id}} =req;
     try {
         const user = await User.findById({_id:id});
-        res.render("userDetail",{pageTitle : "userDetail",user});
+        console.log("user"+user);
+        console.log(id)
+        console.log(id==user._id)
+        res.render("userDetail",{pageTitle : "userDetail", user , id});
+
     } catch (error) {
         res.redirect(routes.home)
     }
    
 }
-export const changePassword = (req,res)=> res.render("changePassword",{pageTitle : "changePassword"});
+
+export const basicUserAvatar = async (req,res)=>{
+    const {
+        user:{_id:id},
+    } =req;
+    console.log(id)
+    try {
+        await User.findByIdAndUpdate(id,{
+            avatarUrl:routes.basicimg
+        })
+        res.redirect(`/users${routes.editProfile}`)
+    } catch (error) {
+        res.render("editProfile",{pageTitle : "editProfile"}); 
+    }
+}
+
+export const getEditProfile = (req,res)=>{
+    res.render("editProfile",{pageTitle : "editProfile"});
+}
+export const postEditProfile = async (req,res)=>{
+    const {
+        user:{_id:id},
+        body :{name,email},
+        file
+    } =req;
+    try {
+        const checkEmail = await User.find({email:email});
+        if(!checkEmail[0]){
+            await User.findByIdAndUpdate(id,{
+                name,
+                email,
+                avatarUrl:file ? file.path : req.user.avatarUrl
+            });
+        }
+        await User.findByIdAndUpdate(id,{
+            name,
+            avatarUrl:file ? file.path : req.user.avatarUrl
+        });
+        res.redirect(routes.me)
+    } catch (error) {
+        res.render("editProfile",{pageTitle : "editProfile"});
+    }
+}
+export const getChangePassword = (req,res)=>{
+    res.render("changePassword",{pageTitle : "changePassword"});
+}
+export const postChangePassword = async (req,res)=>{
+    const{
+        body:{oldPassword,newPassword,newPassword2},
+    }=req;
+    try {
+        if(newPassword !== newPassword2){
+            res.status(400);
+            res.redirect(routes.changePassword);
+            return;
+        }
+        await req.user.changePassword(oldPassword,newPassword)
+        res.redirect(routes.me)
+    } catch (error) {
+        res.status(400);
+        res.redirect(routes.changePassword)
+    }
+}

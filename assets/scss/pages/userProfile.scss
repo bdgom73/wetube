@@ -1,0 +1,36 @@
+.user-profile{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .user-profile_header{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 15px;
+        background-color: #d8d8d8;
+        padding: 10px;
+        font-weight: 600;
+        .profile_username{
+            margin-top: 5px;
+            font-size: 18px;
+        }
+        .profile_useremail{
+            margin-top:15px;
+        } 
+    }
+    .user-profile_btns{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .user-link:first-child{
+            margin-top: 5px;
+        }
+        .user-link:not(:last-child){
+            margin-bottom: 10px;
+        }
+        button{
+            color: white;
+        }
+    }
+}
