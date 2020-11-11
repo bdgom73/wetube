@@ -44,5 +44,38 @@
             }
         }
     }
+    .userBlock{
+        width: 100%;
+        max-width: 200px;
+        margin-top: 20px;
+        padding: 5px;
+        border: 3px solid rgba(0, 0, 0, 0.42);
+        box-shadow: 8px 8px rgba(0, 0, 0, 0.62);
+        a{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color:#000;
+            span{
+                font-size: 15px;      
+            }
+            .userBlock_name{
+                margin-top: 15px;
+            }
+            .userBlock_email{
+                margin-top: 8px;
+            }
+            
+        }
+    }
+    .userBlock:not(:first-child){
+        margin-left: 20px;
+    }
+    .userBlock:hover{
+        border: 3px solid  #537fdf;
+        box-shadow: 8px 8px  #3b5998;
+       
+    }
 }
+
 }

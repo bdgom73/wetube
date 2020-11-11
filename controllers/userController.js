@@ -82,13 +82,10 @@ export const getMe = (req,res)=>{
 export const userDetail = async (req,res)=> {
     const {params : {id}} =req;
     try {
-        const user = await User.findById({_id:id});
-        console.log("user"+user);
-        console.log(id)
-        console.log(id==user._id)
-        res.render("userDetail",{pageTitle : "userDetail", user , id});
-
+        const user = await User.findById({_id:id}).populate('videos');
+        res.render("userDetail",{pageTitle : "userDetail", user , id})
     } catch (error) {
+        console.log(error);
         res.redirect(routes.home)
     }
    
@@ -98,7 +95,6 @@ export const basicUserAvatar = async (req,res)=>{
     const {
         user:{_id:id},
     } =req;
-    console.log(id)
     try {
         await User.findByIdAndUpdate(id,{
             avatarUrl:routes.basicimg

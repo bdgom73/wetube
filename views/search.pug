@@ -5,12 +5,23 @@ block content
         h3 Searching for #{searchingBy} ...
     .search-videos
         .search-videos_wrap
+            if searchid === "user"
+                if videos.length === 0
+                    h5 사용자가 없습니다.    
+                each user in videos
+                    .userBlock
+                        a(href=routes.userDetail(user.id))
+                            img.u-avatar(src=user.avatarUrl)
+                            span.userBlock_name= user.name
+                            span.userBlock_email= user.email
+        
             if videos.length === 0
                 h5 No Video Found
-            each video in videos
-                +videoBlock({
-                    title:video.title,
-                    views:video.views,
-                    videoFile:video.fileUrl,
-                    id:video.id
-                })
+            if searchid === "video"
+                each video in videos
+                    +videoBlock({
+                        title:video.title,
+                        views:video.views,
+                        videoFile:video.fileUrl,
+                        id:video.id
+                    })

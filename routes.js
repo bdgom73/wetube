@@ -4,7 +4,7 @@ const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
-const BASICIMG = "http://127.0.0.1:3010/uploads/avatars/basicuser.png";
+const BASICIMG = "uploads/avatars/basicuser.png";
 
 // Users
 const USERS = "/users";
