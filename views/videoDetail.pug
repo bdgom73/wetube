@@ -1,9 +1,13 @@
 extends layouts/main.pug
+include mixins/videoPlayer.pug
 
 block content
     .video-detail_container
-        .video_player
-            video(src=`/${video.fileUrl}`,controls=true)
+        //- .video_player
+        //-     video(src=`/${video.fileUrl}`,controls=true)
+        +videoPlayer({
+            src:video.fileUrl
+        })
         .video_info
             if `${video.creator.id}` === `${loggedUser._id}`
                 a(href=routes.editVideo(video.id))
@@ -21,3 +25,5 @@ block content
                 span.video_comment-number 1 comment
             else
                 span.video_comment-number #{video.comments.length} comments
+    
+            

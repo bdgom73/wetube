@@ -20,6 +20,7 @@ const UPLOAD = "/upload";
 const VIDEO_DETAIL = "/:id";
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
+const COMMENTS = "/:id/comments"
 
 // GITHUB
 const GITHUB = "/auth/github";
