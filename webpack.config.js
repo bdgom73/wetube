@@ -10,6 +10,11 @@ const OUTPUT_DIR = path.resolve(__dirname, "static");
 const config = {
     entry: ["@babel/polyfill",ENTRY_FILE],
     mode: MODE,
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
     module: {
         rules: [
             {
@@ -57,3 +62,4 @@ const config = {
     };
 
     module.exports = config;
+   

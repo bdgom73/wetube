@@ -17,7 +17,7 @@ main {
 }
 
 button,
-input:not([type="file"]),
+input:not([type="file"],[type="range"]),
 textarea,
 .fileUpload
 {
