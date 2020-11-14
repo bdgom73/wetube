@@ -1,6 +1,6 @@
 extends layouts/main.pug
 include mixins/videoPlayer.pug
-
+include mixins/videoComment.pug
 block content
     .video-detail_container
         //- .video_player
@@ -20,10 +20,27 @@ block content
                     span=video.creator.name
             p.video_desc=video.description
             
+        
         .video_comments
+            form(action=`${routes.videoComment(video.id)}`, method="post")
+                textarea(placeholder="Please enter a comment!", name="comment")
+                input(type="submit", value="Write")
             if video.comments.length === 1
                 span.video_comment-number 1 comment
             else
                 span.video_comment-number #{video.comments.length} comments
+            
+        .vidoe_comments__wrap
+            each comment in video.comments
+                +videoComment({
+                    id:comment.creator._id,
+                    text:comment.text,
+                    creator:comment.creator.name,
+                    date:comment.createdAt,
+                    avatarUrl:comment.creator.avatarUrl
+                })
+
+                        
+
     
             

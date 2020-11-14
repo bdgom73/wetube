@@ -1,0 +1,12 @@
+mixin videoComment(video={})
+    .videoComments
+        a(href=`/${routes.userDetail(video.id)}`)
+            img.videoComment_avatar(src=video.avatarUrl.indexOf("http")!==-1 ? 
+                `${video.avatarUrl}` : `/${video.avatarUrl}`)
+            h5.videoComment_creator=video.creator  
+            h6.videoComment_date=video.date 
+        h4.videoComment_text=video.text  
+        
+         
+          
+        

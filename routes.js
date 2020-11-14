@@ -75,7 +75,14 @@ const routes = {
     facebook:FACEBOOK,
     facebookCallback:FACEBOOK_CB,
     resetavatar:RESETAVATAR,
-    basicimg:BASICIMG
+    basicimg:BASICIMG,
+    videoComment : (id)=>{
+        if(id){
+            return `/videos/${id}/comments`
+        }else{
+            return COMMENTS
+        }
+    }
 };
 
 export default routes;

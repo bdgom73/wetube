@@ -1,0 +1,66 @@
+.vidoe_comments__wrap{
+    width: 850px;
+    margin-top:50px ;
+}
+.videoComments{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    a{
+        display:flex;
+        align-items: flex-end;
+        margin-bottom: 5px;
+        padding: 10px;
+        .videoComment_creator{
+            margin-left:10px;
+            color:#000;
+            font-weight: 600;
+            font-size:14px;
+        }
+        .videoComment_avatar{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .videoComment_date{
+            margin-left: 10px;
+            font-size: 11px;
+            color:rgba(0,0,0,0.4);
+            font-weight: 500;
+        }
+    }
+   .videoComment_text{
+        width: 100%;     
+        padding-left:70px;  
+        font-size:14px;
+        color:#000;
+    }
+ 
+}
+.video_comments{
+    width: 850px;
+    form{
+        display:flex;
+        flex-direction: column;
+        textarea{
+            width: 100%;
+            height: 150px;
+            overflow-x: hidden;
+            overflow-y:auto ;
+            resize: none;
+        }
+       
+        input[type="submit"]{
+            width: 50px;
+            padding:5px;
+            color:#fff;
+            background-color: #222222;
+            font-weight: 500;
+            border-radius: 8px;
+            align-self: flex-end;
+            margin-top:5px;
+        }
+    }
+}

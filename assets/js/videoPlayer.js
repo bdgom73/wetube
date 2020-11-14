@@ -115,6 +115,11 @@ function handleTimeDrag(event){
     videoPlayer.currentTime = value; 
     
 }
+function setVideoProgress(){
+    const percent = 
+        ((timeRange.value - timeRange.min) / (timeRange.max - timeRange.min))*100;
+    timeRange.style.setProperty("--progressPersent",`${percent}%`);
+}
 
 function init(){
     videoPlayer.volume = 0.5;
@@ -129,6 +134,7 @@ function init(){
     videoPlayer.addEventListener("ended",handleEnded);
     volumeRange.addEventListener("input",handleDrag);
     timeRange.addEventListener("input",handleTimeDrag);
+    videoPlayer.addEventListener("timeupdate",setVideoProgress);
 }
 
 if(videoContainer){
