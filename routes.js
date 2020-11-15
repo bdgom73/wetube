@@ -1,3 +1,5 @@
+import { comment } from "postcss";
+
 // Global
 const HOME = "/";
 const JOIN = "/join";
@@ -20,7 +22,8 @@ const UPLOAD = "/upload";
 const VIDEO_DETAIL = "/:id";
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
-const COMMENTS = "/:id/comments"
+const COMMENTS = "/:id/comments";
+const COMMENTS_DELETE = "/:video_id/comments/:id/delete";
 
 // GITHUB
 const GITHUB = "/auth/github";
@@ -81,6 +84,13 @@ const routes = {
             return `/videos/${id}/comments`
         }else{
             return COMMENTS
+        }
+    },
+    videoCommentDelete : (id,video_id)=>{
+        if(id && video_id){
+            return `/videos/${video_id}/comments/${id}/delete`
+        }else{
+            return COMMENTS_DELETE
         }
     }
 };

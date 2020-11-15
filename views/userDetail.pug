@@ -5,12 +5,12 @@ block content
     .user-profile
         if user._id || user.id
              .user-profile_header
-                img.u-avatar(src=`${user.avatarUrl}`)
+                img.u-avatar(src=user.avatarUrl.indexOf("http")!==-1 ? `${user.avatarUrl}` : `/${user.avatarUrl}`)
                 h4.profile_username=user.name
                 h3.profile_useremail=user.email
         else        
             .user-profile_header
-                img.u-avatar(src=loggedUser.avatarUrl)
+                img.u-avatar(src=loggedUser.avatarUrl.indexOf("http")!==-1 ? `${loggedUser.avatarUrl}` : `/${loggedUser.avatarUrl}`)
                 h4.profile_username=loggedUser.name
                 h3.profile_useremail=loggedUser.email
 

@@ -145,3 +145,20 @@ export const deleteVideo = async (req,res)=>{
     catch(error){} 
     res.redirect(routes.home)
 }
+export const deleteComment = async (req,res)=>{ 
+    const {
+        params : {id,video_id}
+    } = req;
+    try{
+        const comment = await Comment.findById(id);
+        if(`${comment.creator._id}` !== `${req.user.id}`){
+            throw Error();
+        }else{
+            await Comment.findOneAndRemove({_id:id});
+        }   
+    }
+    catch(error){
+        console.log(error)
+    } 
+    res.redirect(routes.videoDetail(video_id));
+}

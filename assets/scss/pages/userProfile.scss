@@ -32,12 +32,17 @@
         }
         button{
             color: white;
+            border:0;
+            padding:8px;
+            border-radius: 5px;
+            font-size: 15px;
         }
     }
     .uploaded-videos{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         width: 100%;
         max-width: 1050px;
         margin-top: 50px;
@@ -46,6 +51,7 @@
             width: 320px;
             height: 320px;
             padding: 5px;
+            margin-bottom: 50px;  
         }
         .videoBlock__thumbnail{
             padding: 2px;
@@ -64,6 +70,7 @@
             margin-left: 20px;
         }
         .videoBlock__title{
+            display:inline-block;
             color:#000;
             font-size: 18px;
             font-weight: 600;
@@ -71,11 +78,13 @@
             padding-left:5px ;
         }
         .videoBlock__views{
+            display:inline-block;
             color:rgba(0, 0, 0, 0.43);
             font-size: 12px;
             font-weight: 400;
             padding-top: 5px;
             padding-left:5px ; 
+            margin-bottom: 20px;
         }
     }
  
