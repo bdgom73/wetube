@@ -1,7 +1,7 @@
 mixin videoComment(video={})
     d.videoComments
         a(href=routes.userDetail(video.id))
-            img.videoComment_avatar(src=video.avatarUrl.indexOf("http")!==-1 ? `${video.avatarUrl}` : `/${video.avatarUrl}`)
+            img.videoComment_avatar(src= (!video.avatarUrl) ? "" : video.avatarUrl.indexOf("http")!==-1 ? `${video.avatarUrl}` : `/${video.avatarUrl}`)
             h5.videoComment_creator=video.creator  
             h6.videoComment_date=video.date 
         h4.videoComment_text=video.text

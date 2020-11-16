@@ -3,8 +3,6 @@ include mixins/videoPlayer.pug
 include mixins/videoComment.pug
 block content
     .video-detail_container
-        //- .video_player
-        //-     video(src=`/${video.fileUrl}`,controls=true)
         +videoPlayer({
             src:video.fileUrl
         })
@@ -23,18 +21,21 @@ block content
         
         .video_comments
             if `${loggedUser}`
-                form(action=`${routes.videoComment(video.id)}`, method="post")
+                form#jsAddComment
                     textarea(placeholder="Please enter a comment!", name="comment")
-                    input(type="submit", value="Write")
+                    input(type="button" , value="쓰기")
             if video.comments.length === 1
-                span.video_comment-number 1 comment
+                span.video_comment-number
+                    span#jsCommentNumber 1 
+                    |&nbsp;comment
             else
-                span.video_comment-number #{video.comments.length} comments
+                span.video_comment-number#jsCommentNumber=video.comments.length 
+                |&nbsp;comments
             
-        .vidoe_comments__wrap
+        .vidoe_comments__wrap#jsVideoComments
             each comment in video.comments
                 +videoComment({
-                    id:comment.creator._id,
+                    id:comment.creator.id,
                     text:comment.text,
                     creator:comment.creator.name,
                     date:comment.createdAt,

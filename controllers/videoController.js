@@ -71,35 +71,33 @@ export const videoDetail = async (req,res)=> {
         }else{
             video.creator.avatarUrl = `/${video.creator.avatarUrl}`
         }
-        video.views+=1;
-        video.save();
         res.render("videoDetail",{pageTitle : video.title ,video}); 
     }catch(error){
         console.log(error)
         res.redirect(routes.home);
     }
 }
-export const videoComments = async (req,res)=>{
-    const {
-        params: {id},
-        body:{comment},
-    } = req;
-    try{
-        const newComment = await Comment.create({
-            text:comment,
-            creator:req.user.id
-        })
-        const videoComment = await Video.findById(id);
-        req.user.comments.push(newComment.id);
-        req.user.save();
-        videoComment.comments.push(newComment.id);
-        videoComment.save();
-        res.redirect(routes.videoDetail(id))
-    }catch(error){
-        console.log(error);
-        res.redirect(routes.videoDetail(id));
-    }
-}
+// export const videoComments = async (req,res)=>{
+//     const {
+//         params: {id},
+//         body:{comment},
+//     } = req;
+//     try{
+//         const newComment = await Comment.create({
+//             text:comment,
+//             creator:req.user.id
+//         })
+//         const videoComment = await Video.findById(id);
+//         req.user.comments.push(newComment.id);
+//         req.user.save();
+//         videoComment.comments.push(newComment.id);
+//         videoComment.save();
+//         res.redirect(routes.videoDetail(id))
+//     }catch(error){
+//         console.log(error);
+//         res.redirect(routes.videoDetail(id));
+//     }
+// }
 
 export const getEditVideo = async (req,res)=>{
     const {
@@ -161,4 +159,53 @@ export const deleteComment = async (req,res)=>{
         console.log(error)
     } 
     res.redirect(routes.videoDetail(video_id));
+}
+
+//Register Video View
+export const postRegisterView = async (req,res)=>{
+    const {
+        params : {id}
+    } = req;
+    try{
+        const video = await Video.findById(id);
+        video.views +=1;
+        video.save();
+        res.status(200);
+    }catch(error){
+        res.status(400);
+    }finally{
+        res.end();
+    }
+}
+
+//ADD Comment
+export const postAddComment = async (req,res)=>{
+    const {
+        params : {id},
+        body : { comment },
+        user
+    } = req;
+    try{
+        const video = await Video.findById(id);
+        const newComment = await Comment.create({
+            text:comment,
+            creator : user.id
+        });
+        await video.comments.push(newComment.id);
+        await video.save()
+        const sendVideo = await Video.findById(id).populate('creator').populate({
+            path:'comments',
+            model:'Comment',
+            populate:{
+                path:'creator',
+                model:'User'
+            }
+        })
+        res.status(200);
+        res.send(sendVideo.comments.reverse());
+    }catch(error){
+        res.status(400);
+    }finally{
+        res.end();
+    }
 }
