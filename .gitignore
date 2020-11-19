@@ -3,6 +3,7 @@ node_modules
 
 #uploads Files 
 /uploads
+/build
 
 #Static file
 static
@@ -107,6 +108,7 @@ dist
 
 # FuseBox cache
 .fusebox/
+build
 
 # DynamoDB Local files
 .dynamodb/

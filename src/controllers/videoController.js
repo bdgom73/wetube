@@ -71,6 +71,7 @@ export const videoDetail = async (req,res)=> {
         }else{
             video.creator.avatarUrl = `/${video.creator.avatarUrl}`
         }
+        console.log(video.creator.avatarUrl)
         res.render("videoDetail",{pageTitle : video.title ,video}); 
     }catch(error){
         console.log(error)

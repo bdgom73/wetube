@@ -5,6 +5,7 @@
   "main": "init.js",
   "author": "kij",
   "dependencies": {
+    "@babel/cli": "^7.12.1",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "autoprefixer": "^10.0.1",
@@ -20,7 +21,7 @@
     "express-session": "^1.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "helmet": "^4.1.1",
-    "mongoose": "^5.10.11",
+    "mongoose": "^5.10.15",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "node-sass": "^4.14.1",
@@ -36,15 +37,19 @@
     "webpack-cli": "^4.1.0"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --delay 2s --ignore '.scss' --ignore 'static' ",
-    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
-    "build:assets": "cross-env WEBPACK_ENV=production webpack"
+    "dev:server": "nodemon --exec babel-node src/init.js --delay 2s --ignore '.scss' --ignore 'static' ",
+    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w",
+    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
+    "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
+    "copyAll": "cp -R src/static build && cp -R src/views build ",
+    "build": "npm run build:server && npm run build:assets && npm run copyAll",
+    "prebuild": "rm -rf build",
+    "start": "node build/init.js"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.6",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^7.0.0-bridge.0",
+    "@babel/register": "^7.12.1",
     "babel-jest": "^26.6.3",
     "cross-env": "^7.0.2",
     "eslint": "^7.12.1",

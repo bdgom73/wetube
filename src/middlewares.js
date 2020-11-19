@@ -31,4 +31,4 @@ export const onlyPrivate = (req,res,next)=>{
     }
 }
 export const uploadVideo = multerVideo.single('videoFile')
-export const uploadAvatar = multerVideo.single('avatar')
+export const uploadAvatar = multerAvatar.single('avatar')
