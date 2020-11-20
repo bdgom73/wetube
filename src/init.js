@@ -8,7 +8,7 @@ import app from "./app";
 import "./models/Video"
 import "./models/Comment"
 import "./models/User"
-
+const port = 3000;
 const port = process.env.PORT || 3010;
 
 const handleListening = ()=>{
