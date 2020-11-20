@@ -33,7 +33,7 @@ const config = {
                     
                 },
                 {
-                        loader:"css-loader" 
+                    loader:"css-loader" 
                 },
                 {
                     loader: "postcss-loader",
@@ -43,7 +43,7 @@ const config = {
                                 return [autoprefixer({overrideBrowserslist: "cover 99.5%"})];
                             }
                         }  
-                    },
+                    }
                 },
                     "sass-loader",
                 ],
