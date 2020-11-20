@@ -28,25 +28,26 @@ const config = {
             {
                 test: /\.scss$/,
                 use: [
-                {
-                    loader: MiniExtractCSS.loader
-                    
-                },
-                {
-                    loader:"css-loader" 
-                },
-                {
-                    loader: "postcss-loader",
-                    options: {
-                        postcssOptions:{
-                            plugins() {
-                                return [autoprefixer({overrideBrowserslist: "cover 99.5%"})];
-                            }
-                        }  
+                    {
+                        loader: MiniExtractCSS.loader
+                        
+                    },
+                    {
+                        loader:"css-loader" 
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions:{
+                                plugins() {
+                                    return [autoprefixer({overrideBrowserslist: "cover 99.5%"})];
+                                }
+                            }  
+                        }
+                    },
+                    { 
+                        loader: "sass-loader"
                     }
-                },
-                { loader: "sass-loader"
-                }
                 ],
             },
         ],
