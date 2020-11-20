@@ -1,4 +1,3 @@
-import "@babel/polyfill";
 import bodyParser from "body-parser";
 import express from "express";
 import flash from "connect-flash";
@@ -24,8 +23,7 @@ const cookieStore = MongoStroe(session);
 app.use(helmet());
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","pug");
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("/static"));
+app.use("/static", express.static(__dirname+"/static"));
 app.use(cookieParser()); //cookie 정보
 app.use(bodyParser.json()); // form data 정보
 app.use(bodyParser.urlencoded({extended:true})); // url 인코더

@@ -5,6 +5,7 @@ import Comment from "../models/Comment"
 export const home = async (req,res)=>{
     try{
         const videos = await Video.find()
+        console.log(videos)
         res.render("home", {pageTitle :"HOME",videos});
     }catch(error){
         console.log(error);
@@ -40,10 +41,10 @@ export const getUpload = (req,res)=>{
 export const postUpload = async (req,res)=>{ 
     const {
         body:{title,description},
-        file : {path}
+        file : {location}
     } = req;
     const newVideo = await Video.create({
-        fileUrl : path,
+        fileUrl : location,
         title,
         description,
         creator:req.user.id

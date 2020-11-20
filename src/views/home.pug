@@ -2,12 +2,15 @@ extends layouts/main.pug
 include mixins/videoBlock
 block content
     .videos
-        .videos_wrap
-            each video in videos
-                +videoBlock({
-                    id:video.id,
-                    title:video.title,
-                    description:video.description,
-                    views:video.views,
-                    videoFile:video.fileUrl
-                })
+        if videos === []
+            .videos_wrap
+                each video in videos
+                    +videoBlock({
+                        id:video.id,
+                        title:video.title,
+                        description:video.description,
+                        views:video.views,
+                        videoFile:video.fileUrl
+                    })
+        else 
+            .msgvideonot 영상이 존재하지 않습니다.
