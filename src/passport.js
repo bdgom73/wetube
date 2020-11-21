@@ -11,7 +11,9 @@ passport.use(
     new github({
             clientID: process.env.GH_ID,
             clientSecret: process.env.GH_SECRET,
-            callbackURL: `http://127.0.0.1:3010${routes.githubCallback}`
+            callbackURL: process.env.PRODUCTION
+            ? `https://gentle-fortress-76964.herokuapp.com${routes.githubCallback}`
+            : `http://localhost:3010${routes.githubCallback}`
         },githubLoginCallback)      
 );
 passport.use(

@@ -26,8 +26,8 @@ const COMMENTS = "/:id/comments";
 const COMMENTS_DELETE = "/:video_id/comments/:id/delete";
 
 // GITHUB
-const GITHUB = __dirname+"/auth/github";
-const GITHUB_CB =__dirname+ "/auth/github/callback";
+const GITHUB = "/auth/github";
+const GITHUB_CB = "/auth/github/callback";
 
 // FACEBOOK
 const FACEBOOK = "/auth/facebook";
