@@ -116,6 +116,7 @@ export const getEditVideo = async (req,res)=>{
         res.redirect(routes.home)
     }
 }
+
 export const postEditVideo = async (req,res)=>{
     const {
         params : {id},

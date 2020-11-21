@@ -6,7 +6,7 @@ const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
-const BASICIMG = "uploads/avatars/basicuser.png";
+const BASICIMG = "https://wetuebe.s3.ap-northeast-2.amazonaws.com/avatar/basicuser.png";
 
 // Users
 const USERS = "/users";
